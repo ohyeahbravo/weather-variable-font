@@ -29,6 +29,7 @@
       id="try-box"
       class="w-full transition delay-150 duration-300 ease-in-out border-2 border-gray-700 focus:border-gray-200 focus:ring focus:ring-red-300 rounded leading-relaxed h-96 py-4 px-5"
     ></textarea>
+      <button @click.prevent="openPrintSetting" class="p-3 bg-red-300 font-mono hover:bg-red-400 text-white">Print</button>
   </div>
 </template>
 
@@ -68,6 +69,10 @@ export default {
         });
     }
 
+    function openPrintSetting() {
+      console.log("open the print setting")
+    }
+
     getWeather(cityID);
 
     // TODO: change the interval if needed
@@ -79,6 +84,7 @@ export default {
       humidity,
       wind,
       temp,
+      openPrintSetting
     };
   },
 };
