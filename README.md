@@ -1,4 +1,4 @@
-# post-orientalism
+# Weather Variable Font Web App
 
 ## Project setup
 ```
