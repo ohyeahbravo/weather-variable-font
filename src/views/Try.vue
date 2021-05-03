@@ -1,31 +1,87 @@
 <template>
-  <div class="w-full py-10 px-32 flex flex-col items-center space-y-10 font-mono">
+  <div
+    class="w-full py-10 px-32 flex flex-col items-center space-y-10 font-mono"
+  >
     <div class="flex flex-row space-x-10 items-center justify-center">
       <div class="flex flex-row space-x-3 items-center justify-center">
-        <img class="weather-icon" src="../assets/icons/temperature.svg" alt="temperature" />
-        <span>12 °C</span>
-        </div>
-        <div class="flex flex-row space-x-2 items-center justify-center">
-        <img class="weather-icon" src="../assets/icons/humidity.svg" alt="humidity" />
-        <span>40 %</span>
-        </div>
-        <div class="flex flex-row space-x-2 items-center justify-center">
-        <img class="weather-icon" src="../assets/icons/wind.svg" alt="wind" />
-        <span>8 mph </span>
-        </div>
+        <img
+          class="weather-icon"
+          src="../assets/icons/temperature.svg"
+          alt="temperature"
+        />
+        <span>{{ temp }} °C</span>
       </div>
+      <div class="flex flex-row space-x-2 items-center justify-center">
+        <img
+          class="weather-icon"
+          src="../assets/icons/humidity.svg"
+          alt="humidity"
+        />
+        <span>{{ humidity }} %</span>
+      </div>
+      <div class="flex flex-row space-x-2 items-center justify-center">
+        <img class="weather-icon" src="../assets/icons/wind.svg" alt="wind" />
+        <span>{{ wind }} mph </span>
+      </div>
+    </div>
     <h1>How do you feel today?</h1>
-    <textarea id="try-box" class="w-full transition delay-150 duration-300 ease-in-out border-2 border-gray-700 focus:border-gray-200 focus:ring focus:ring-red-300 rounded leading-relaxed h-96 py-4 px-5"></textarea>
+    <textarea
+      id="try-box"
+      class="w-full transition delay-150 duration-300 ease-in-out border-2 border-gray-700 focus:border-gray-200 focus:ring focus:ring-red-300 rounded leading-relaxed h-96 py-4 px-5"
+    ></textarea>
   </div>
 </template>
 
 <script>
+import { ref } from "vue";
 export default {
   name: " Try",
   setup() {
-    
+    const api_key = process.env.VUE_APP_WEATHER_API_KEY;
+    const humidity = ref(null);
+    const temp = ref(null);
+    const wind = ref(null);
+    // TODO: currently set to Weimar, need to dynamically fetch
+    const cityID = 2812482;
+
+    // TODO: change the font setting after fetching
+    function getWeather(cityID) {
+      var key = api_key;
+      fetch(
+        "https://api.openweathermap.org/data/2.5/weather?id=" +
+          cityID +
+          "&appid=" +
+          key
+      )
+        .then(function (resp) {
+          return resp.json();
+        }) // Convert data to json
+        .then(function (data) {
+          // console.log(data);
+          humidity.value = data.main.humidity;
+          temp.value = Math.round(parseFloat(data.main.temp)-273.15);
+          wind.value = data.wind.speed;
+        })
+        .catch(function (error) {
+          // catch any errors
+          console.log(error);
+        });
+    }
+
+    getWeather(cityID);
+
+    // TODO: change the interval if needed
+    setInterval(function () {
+      getWeather(cityID);
+    }, 5000);
+
+    return {
+      humidity,
+      wind,
+      temp,
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -56,5 +112,4 @@ export default {
 .weather-icon {
   @apply w-6 h-6;
 }
-
 </style>
