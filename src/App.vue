@@ -1,9 +1,16 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div
+    id="nav"
+    class="fixed top-0 left-0 flex-shrink-0 h-screen w-72 bg-gray-100 flex flex-col items-center justify-center space-y-10"
+  >
+    <router-link to="/">Home</router-link>
+    <router-link to="/try">Try It</router-link>
+    <router-link to="/archive">Archive</router-link>
   </div>
-  <router-view />
+  <div class="flex flex-row">
+    <div class="flex-shrink-0 h-screen w-72 bg-transparent"></div>
+    <router-view />
+  </div>
 </template>
 
 <style lang="scss">
@@ -16,14 +23,11 @@
 }
 
 #nav {
-  padding: 30px;
-
   a {
-    font-weight: bold;
-    color: #2c3e50;
+    @apply font-bold text-lg text-black p-3 bg-transparent font-mono;
 
     &.router-link-exact-active {
-      color: #42b983;
+      @apply bg-black text-gray-100;
     }
   }
 }

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66.95 116.91" >
+    <defs>
+        <style>.cls-1{fill:#231815;}</style>
+    </defs>
+    <g id="레이어_2" data-name="레이어 2">
+        <g id="레이어_1-2" data-name="레이어 1">
+            <path class="cls-1" d="M43.59,67.37V16.18A16.23,16.23,0,0,0,27.41,0h0A16.23,16.23,0,0,0,11.23,16.18V67.37a27.41,27.41,0,1,0,32.36,0ZM27.41,110.58a21.08,21.08,0,0,1-8.64-40.3V15.86a8.65,8.65,0,1,1,17.29,0V70.28a21.08,21.08,0,0,1-8.65,40.3Z" />
+            <path class="cls-1" d="M31.56,72.64v-15a4.15,4.15,0,1,0-8.29,0v15a17.37,17.37,0,1,0,8.29,0Z" />
+            <rect class="cls-1" x="55.61" y="38.47" width="4.4" height="18.27" rx="2.2" transform="translate(105.41 -10.21) rotate(90)" />
+            <rect class="cls-1" x="55.61" y="25.79" width="4.4" height="18.27" rx="2.2" transform="translate(92.74 -22.89) rotate(90)" />
+            <rect class="cls-1" x="55.61" y="13.11" width="4.4" height="18.27" rx="2.2" transform="translate(80.06 -35.57) rotate(90)" />
+        </g>
+    </g>
+</svg>
