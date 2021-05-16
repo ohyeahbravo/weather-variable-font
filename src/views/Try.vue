@@ -15,7 +15,7 @@
           clip-rule="evenodd"
         />
       </svg>
-      <span> {{ cityName }} </span>
+      <span> {{ location }} </span>
     </div>
     <div class="flex flex-row space-x-10 items-center justify-center">
       <div class="flex flex-row space-x-3 items-center justify-center">
@@ -55,75 +55,77 @@
 
 <script>
 import { ref } from "vue";
+import openGeocoder from "node-open-geocoder";
+
 export default {
   name: " Try",
   setup() {
     const api_key = process.env.VUE_APP_WEATHER_API_KEY;
-    const humidity = ref(null);
-    const temp = ref(null);
-    const wind = ref(null);
-    const cityID = ref(null);
-    const cityName = ref(null);
+    const humidity = ref(0);
+    const temp = ref(0);
+    const wind = ref(0);
+    const location = ref("");
 
-    // TODO: currently set to Weimar, need to dynamically fetch
-    function getCityfromCoords(coords) {
-      const cityName = "Weimar";
-      const cityID = 2812482;
-      console.log(coords);
-      return [cityName, cityID];
+    function getPlaceName(coords) {
+      openGeocoder()
+        .reverse(coords.lon, coords.lat)
+        .end((err, res) => {
+          if (res) {
+            location.value = res.address.town + ', ' + res.address.country;
+          } else {
+            console.log(err);
+            location.value = "Weimar, Germany";
+          }
+        });
     }
 
-    function getLocation() {
+    function getWeather() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
-          [cityName.value, cityID.value] = getCityfromCoords({
+          const coords = {
             lat: pos.coords.latitude,
             lon: pos.coords.longitude,
-          });
+          };
+          getPlaceName(coords);
+          fetch(
+            "https://api.openweathermap.org/data/2.5/weather?lat=" +
+              coords.lat +
+              "&lon=" +
+              coords.lon +
+              "&appid=" +
+              api_key
+          )
+            .then(function (resp) {
+              return resp.json();
+            }) // Convert data to json
+            .then(function (data) {
+              humidity.value = data.main.humidity;
+              temp.value = Math.round(parseFloat(data.main.temp) - 273.15);
+              wind.value = data.wind.speed;
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         });
       } else {
-        [cityName.value, cityID.value] = ["Weimar", 2812482];
+        // set default location to weimar, germany
+        location.value = "Weimar, Germany";
       }
-    }
-
-    // TODO: change the font setting after fetching
-    function getWeather(cityID) {
-      var key = api_key;
-      fetch(
-        "https://api.openweathermap.org/data/2.5/weather?id=" +
-          cityID +
-          "&appid=" +
-          key
-      )
-        .then(function (resp) {
-          return resp.json();
-        }) // Convert data to json
-        .then(function (data) {
-          // console.log(data);
-          humidity.value = data.main.humidity;
-          temp.value = Math.round(parseFloat(data.main.temp) - 273.15);
-          wind.value = data.wind.speed;
-        })
-        .catch(function (error) {
-          // catch any errors
-          console.log(error);
-        });
     }
 
     function openPrintSetting() {
       console.log("open the print setting");
     }
 
-    getLocation();
-    getWeather(cityID);
+    getWeather();
 
     // TODO: change the interval if needed
     setInterval(function () {
-      getWeather(cityID);
+      getWeather();
     }, 5000);
 
     return {
-      cityName,
+      location,
       humidity,
       wind,
       temp,
