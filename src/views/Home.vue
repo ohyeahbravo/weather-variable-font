@@ -1,13 +1,11 @@
 <template>
-  <div class="w-full flex flex-col justify-center items-center">
-    <TextBox text="Weather." :width="width" :weight="weight" :italic="italic" />
-    <div
-      class="mt-10 flex flex-col w-80 space-y-8"
-    >
+  <div class="w-full flex flex-col items-center pt-36">
+    <TextBox text="WEATHER" :opsz="opsz" :weight="weight" :italic="italic" />
+    <div class="mt-10 flex flex-col w-80 space-y-8">
       <Slider
         field="temperature"
-        variable="width"
-        :defaultValue="defaultWidth"
+        variable="opsz"
+        :defaultValue="defaultOpsz"
         @valueChanged="valueChanged"
       />
       <Slider
@@ -17,7 +15,7 @@
         @valueChanged="valueChanged"
       />
       <Slider
-          field="wind"
+        field="wind"
         variable="italic"
         :defaultValue="defaultItalic"
         @valueChanged="valueChanged"
@@ -39,29 +37,29 @@ export default {
   },
   setup() {
     const defaultWeight = ref("50");
-    const defaultWidth = ref("50");
+    const defaultOpsz = ref("50");
     const defaultItalic = ref("50");
 
-    const weight = ref(defaultWeight.value)
-    const width = ref(defaultWidth.value)
-    const italic = ref(defaultItalic.value)
+    const weight = ref(defaultWeight.value);
+    const opsz = ref(defaultOpsz.value);
+    const italic = ref(defaultItalic.value);
 
     function valueChanged(variable, newValue) {
-      if(variable === 'weight') {
-        weight.value = newValue
-      } else if(variable === 'width') {
-        width.value = newValue
+      if (variable === "weight") {
+        weight.value = newValue;
+      } else if (variable === "opsz") {
+        opsz.value = newValue;
       } else {
-        italic.value = newValue
+        italic.value = newValue;
       }
     }
 
     return {
       defaultWeight,
-      defaultWidth,
+      defaultOpsz,
       defaultItalic,
       weight,
-      width,
+      opsz,
       italic,
       valueChanged,
     };

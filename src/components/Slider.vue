@@ -49,13 +49,14 @@ export default {
 
 .slider {
   -webkit-appearance: none;
-  @apply w-full appearance-none h-1 bg-gray-200;
+  @apply w-full appearance-none bg-default-blue z-10;
+  height: 0.75px;
 }
 
 .slider#humidity {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    @apply appearance-none w-5 h-5 cursor-pointer;
+    @apply appearance-none w-5 h-5 cursor-pointer z-20;
     background: url("~@/assets/icons/humidity.svg") no-repeat center;
   }
   &::-moz-range-thumb {
@@ -65,11 +66,9 @@ export default {
 }
 
 .slider#temperature {
-  @apply text-green-500;
-
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    @apply appearance-none w-5 h-5 cursor-pointer;
+    @apply appearance-none w-5 h-5 cursor-pointer z-20;
     background: url("~@/assets/icons/temperature.svg") no-repeat center;
   }
   &::-moz-range-thumb {
@@ -81,16 +80,12 @@ export default {
 .slider#wind {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    @apply appearance-none w-5 h-5 cursor-pointer;
+    @apply appearance-none w-5 h-5 cursor-pointer z-20;
     background: url("~@/assets/icons/wind.svg") no-repeat center;
   }
   &::-moz-range-thumb {
     @apply w-5 h-5 cursor-pointer;
     background: url("~@/assets/icons/wind.svg") no-repeat center;
   }
-}
-
-svg {
-  @apply stroke-current text-green-500;
 }
 </style>
