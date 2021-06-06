@@ -8,7 +8,7 @@
     <router-link to="/archive">ARCHIVE</router-link>
   </div>
   <div class="flex flex-row">
-    <div class="flex-shrink-0 h-screen w-72 bg-transparent"></div>
+    <div class="flex-shrink-0 h-screen w-64 bg-transparent"></div>
     <router-view />
   </div>
 </template>
@@ -29,7 +29,7 @@
 
 #nav {
   a {
-    @apply text-lg py-px px-5 text-default-blue bg-transparent;
+    @apply text-lg py-px px-3 text-default-blue bg-transparent;
     font-variation-settings: "wght" 30, "ital" 10, "opsz" 100;
 
     &.router-link-exact-active {
