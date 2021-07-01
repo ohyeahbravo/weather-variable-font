@@ -20,7 +20,10 @@
             clip-rule="evenodd"
           />
         </svg>
-        <span class="weather-value"> {{ location }} </span>
+        <div class="flex flex-col">
+          <span class="weather-value"> {{ location }} </span>
+          <span class=""> {{ time }} </span>
+        </div>
         <img
           class="weather-icon"
           src="../assets/icons/temperature.svg"
@@ -35,6 +38,12 @@
         <span class="weather-value fontnotready">{{ humidity }} %</span>
         <img class="weather-icon" src="../assets/icons/wind.svg" alt="wind" />
         <span class="weather-value fontnotready">{{ wind }} mph </span>
+      </div>
+      <div
+        id="alignment-setting"
+        class="rounded-full bg-transparent w-20 h-10 border text-default-blue border-default-blue flex flex-row"
+      >
+        <a class=""><i class="fas fa-align-left"></i></a>
       </div>
       <button @click.prevent="openPrintSetting" id="print-button">
         PRINT IT
@@ -55,7 +64,9 @@ export default {
     const temp = ref(0);
     const wind = ref(0);
     const location = ref("");
-
+    const now = new Date();
+    // const time = ref(now.format("dd. MM yyyy").toLocaleString())
+    const time = ref(new Intl.DateTimeFormat("en-US").format(now));
     function getPlaceName(coords) {
       openGeocoder()
         .reverse(coords.lon, coords.lat)
@@ -93,6 +104,8 @@ export default {
               return resp.json();
             }) // Convert data to json
             .then(function (data) {
+              console.log(api_key);
+              console.dir(data);
               humidity.value = data.main.humidity;
               temp.value = Math.round(parseFloat(data.main.temp) - 273.15);
               wind.value = data.wind.speed;
@@ -137,7 +150,6 @@ export default {
       // childWindow.document.close();
       // childWindow.focus();
       // childWindow.print();
-
 
       // Get HTML to print from element
       const prtHtml = document.getElementById("try-box").value;
@@ -184,6 +196,7 @@ export default {
 
     return {
       location,
+      time,
       humidity,
       wind,
       temp,

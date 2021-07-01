@@ -1,5 +1,5 @@
 <template>
-  <div class="slider-container">
+  <div class="relative max-w-full">
     <input
       class="slider"
       :id="field"
@@ -43,14 +43,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.slider-container {
-  @apply relative max-w-full;
-}
-
 .slider {
   -webkit-appearance: none;
   @apply w-full appearance-none bg-default-blue z-10;
-  height: 0.75px;
+  height: 0.75pt;
 }
 
 .slider#humidity {
