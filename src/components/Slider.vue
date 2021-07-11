@@ -6,8 +6,8 @@
       type="range"
       :name="field"
       v-model="value"
-      min="0"
-      max="100"
+      :min="min"
+      :max="max"
       step="1"
     />
   </div>
@@ -22,6 +22,8 @@ export default {
     field: String,
     variable: String,
     defaultValue: String,
+    min: Number,
+    max: Number,
   },
   emits: ["valueChanged"],
   setup(props, { emit }) {
@@ -53,11 +55,11 @@ export default {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     @apply appearance-none w-5 h-5 cursor-pointer z-20;
-    background: url("~@/assets/icons/humidity.svg") no-repeat center;
+    background: url("~@/assets/icons/humidity_new.svg") no-repeat center;
   }
   &::-moz-range-thumb {
     @apply w-5 h-5 cursor-pointer;
-    background: url("~@/assets/icons/humidity.svg") no-repeat center;
+    background: url("~@/assets/icons/humidity_new.svg") no-repeat center;
   }
 }
 
@@ -65,23 +67,33 @@ export default {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     @apply appearance-none w-5 h-5 cursor-pointer z-20;
-    background: url("~@/assets/icons/temperature.svg") no-repeat center;
+    background: url("~@/assets/icons/temperature_new.svg") no-repeat center;
   }
   &::-moz-range-thumb {
     @apply w-5 h-5 cursor-pointer;
-    background: url("~@/assets/icons/temperature.svg") no-repeat center;
+    background: url("~@/assets/icons/temperature_new.svg") no-repeat center;
   }
 }
 
 .slider#wind {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    @apply appearance-none w-5 h-5 cursor-pointer z-20;
-    background: url("~@/assets/icons/wind.svg") no-repeat center;
+    @apply appearance-none w-5 h-5 cursor-pointer z-20 border-2;
+    background: url("~@/assets/icons/wind_new.svg") no-repeat center;
   }
   &::-moz-range-thumb {
     @apply w-5 h-5 cursor-pointer;
-    background: url("~@/assets/icons/wind.svg") no-repeat center;
+    background: url("~@/assets/icons/wind_new.svg") no-repeat center;
+  }
+}
+
+.slider#fontSize {
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @apply appearance-none w-4 h-4 cursor-pointer z-20 border-2 rounded-full bg-default-blue;
+  }
+  &::-moz-range-thumb {
+    @apply w-4 h-4 cursor-pointer rounded-full bg-default-blue;
   }
 }
 </style>

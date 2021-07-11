@@ -68,6 +68,7 @@ export default {
   setup() {
     const photos = ref([]);
     let currentFullScreenImageIndex = ref(1);
+    document.querySelector("#app").style.backgroundSize = "0% 0%";
     const fullScreenImageSrc = computed(() =>
       require(`../assets/images/${currentFullScreenImageIndex.value}.jpg`)
     );

@@ -1,13 +1,13 @@
 <template>
   <div
     id="nav"
-    class="fixed top-0 left-0 flex-shrink-0 h-screen w-64 bg-white border-r border-default-blue flex flex-col items-center space-y-10"
+    class="fixed top-0 left-0 flex-shrink-0 h-screen w-64 border-r border-default-blue flex flex-col items-center space-y-10"
   >
     <router-link class="mt-36" to="/">HOME</router-link>
     <router-link to="/try">TRY IT</router-link>
     <router-link to="/archive">ARCHIVE</router-link>
   </div>
-  <div class="flex flex-row">
+  <div class="flex flex-row h-auto">
     <div class="flex-shrink-0 h-screen w-64 bg-transparent"></div>
     <router-view />
   </div>
@@ -20,11 +20,16 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-image: url("~@/assets/background.png");
+  background-repeat: no-repeat;
+  background-position: 0% 100%;
+  background-size: 100% 50%;
 }
 
 @font-face {
   font-family: "Weather";
-  src: url("~@/assets/fonts/WeatherDoubleUnicodeGX.ttf") format("truetype-variations");
+  src: url("~@/assets/fonts/WeatherDoubleUnicodeGX.ttf")
+    format("truetype-variations");
 }
 
 #nav {
