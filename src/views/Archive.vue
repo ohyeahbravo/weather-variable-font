@@ -1,29 +1,35 @@
 <template>
-  <div id="archive" class="w-full flex flex-start flex-wrap p-5">
-    <div v-for="(datum, idx) in data" class="p-0 m-0" :key="idx">
-      <!-- <img
+  <div id="archive" class="w-full">
+    <div class="w-full flex align-start justify-start flex-wrap p-5">
+      <div
+        v-for="(datum, idx) in data"
+        class="p-2 clear-both mb-auto"
+        :key="idx"
+      >
+        <!-- <img
         class="cursor-zoom-in"
         :src="photo.src"
         :alt="photo.alt"
         @click="enlarge"
       /> -->
-      <p
-        class="text-default-blue border whitespace-pre border-default-blue text-left"
-        :style="{
-          fontSize: datum.fontSize + 'px',
-          fontVariationSettings:
-            'wght ' +
-            datum.wght +
-            ', ital ' +
-            datum.ital +
-            ', opsz ' +
-            datum.opsz,
-          fontFamily: 'Weather',
-          padding: '1rem 1.25rem',
-        }"
-      >
-        {{ datum.content }}
-      </p>
+        <p
+          class="text-default-blue border whitespace-pre border-default-blue text-left"
+          :style="{
+            fontSize: datum.fontSize + 'px',
+            fontVariationSettings:
+              'wght ' +
+              datum.wght +
+              ', ital ' +
+              datum.ital +
+              ', opsz ' +
+              datum.opsz,
+            fontFamily: 'Weather',
+            padding: '1rem 1.25rem',
+          }"
+        >
+          {{ datum.content }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -109,41 +115,5 @@ li {
   -moz-column-gap: 5px;
   column-count: 3;
   column-gap: 5px;
-}
-
-#archive img {
-  /* Just in case there are inline attributes */
-  width: 100% !important;
-  height: auto !important;
-  margin-bottom: 5px;
-}
-
-@media (max-width: 1200px) {
-  #archive {
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
-    column-count: 3;
-  }
-}
-@media (max-width: 1000px) {
-  #archive {
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
-    column-count: 3;
-  }
-}
-@media (max-width: 800px) {
-  #archive {
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
-    column-count: 2;
-  }
-}
-@media (max-width: 400px) {
-  #archive {
-    -moz-column-count: 1;
-    -webkit-column-count: 1;
-    column-count: 1;
-  }
 }
 </style>
