@@ -1,62 +1,29 @@
 <template>
-  <div id="archive" class="w-full">
-    <li v-for="(photo, idx) in photos" :key="idx">
-      <img
+  <div id="archive" class="w-full flex flex-start flex-wrap p-5">
+    <div v-for="(datum, idx) in data" class="p-0 m-0" :key="idx">
+      <!-- <img
         class="cursor-zoom-in"
         :src="photo.src"
         :alt="photo.alt"
         @click="enlarge"
-      />
-    </li>
-  </div>
-  <div
-    id="full-screen-image"
-    class="hidden modal top-0 left-0 fixed w-full h-full bg-black bg-opacity-80"
-  >
-    <div
-      class="flex flex-row justify-between items-center h-full p-5 text-white fixed w-full"
-    >
-      <button
-        :disabled="currentFullScreenImageIndex == 1"
-        @click.prevent="goToPrevImage"
-        class="focus:outline-none hover:opacity-70 disabled:text-gray-400"
+      /> -->
+      <p
+        class="text-default-blue border whitespace-pre border-default-blue text-left"
+        :style="{
+          fontSize: datum.fontSize + 'px',
+          fontVariationSettings:
+            'wght ' +
+            datum.wght +
+            ', ital ' +
+            datum.ital +
+            ', opsz ' +
+            datum.opsz,
+          fontFamily: 'Weather',
+          padding: '1rem 1.25rem',
+        }"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-12 w-12"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </button>
-      <img
-        class="cursor-zoom-out max-w-3/5 max-h-4/5"
-        :src="fullScreenImageSrc"
-        @click="closeFullScreenImage"
-      />
-      <button
-        :disabled="currentFullScreenImageIndex == photos.length"
-        @click.prevent="goToNextImage"
-        class="focus:outline-none hover:opacity-70 disabled:text-gray-400"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-12 w-12"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-            clip-rule="evenodd"
-          />
-        </svg>
-      </button>
+        {{ datum.content }}
+      </p>
     </div>
   </div>
 </template>
@@ -66,6 +33,13 @@ import { ref, computed } from "vue";
 export default {
   name: " Archive",
   setup() {
+    const data = ref([]);
+    const archiveCount = localStorage.getItem("archiveCount");
+    if (archiveCount) {
+      for (let i = 1; i <= parseInt(archiveCount); i++) {
+        data.value.push(JSON.parse(localStorage.getItem("archive" + i)));
+      }
+    }
     const photos = ref([]);
     let currentFullScreenImageIndex = ref(1);
     document.querySelector("#app").style.backgroundSize = "0% 0%";
@@ -106,6 +80,7 @@ export default {
     }
 
     return {
+      data,
       photos,
       fullScreenImageSrc,
       currentFullScreenImageIndex,
@@ -122,7 +97,7 @@ export default {
 li {
   @apply list-none;
 }
-#archive {
+#archive-old {
   /* Prevent vertical gaps */
   line-height: 0;
   margin-top: 5px;

@@ -68,8 +68,8 @@
           <Slider
             field="fontSize"
             variable="fontSize"
-            min="9"
-            max="100"
+            :min="9"
+            :max="100"
             :defaultValue="defaultFontSize"
             @valueChanged="fontSizeChanged"
           />
@@ -104,7 +104,7 @@ export default {
     const wind = ref(0);
     const location = ref("");
     const now = new Date();
-    const defaultFontSize = ref(16);
+    const defaultFontSize = ref("16");
     const fontSize = ref(defaultFontSize.value);
     // const time = ref(now.format("dd. MM yyyy").toLocaleString())
     const time = ref(new Intl.DateTimeFormat("en-US").format(now));
@@ -154,7 +154,7 @@ export default {
               humidity.value = data.main.humidity;
               temp.value = Math.round(parseFloat(data.main.temp) - 273.15);
               wind.value = data.wind.speed;
-              document.querySelector("#try- box").style.fontVariationSettingX =
+              document.querySelector("#try-box").style.fontVariationSettingX =
                 '"wght" ' +
                 humidity.value +
                 ', "opsz" ' +
@@ -174,9 +174,51 @@ export default {
 
     // TODO: apply the style
     function archive() {
-      var canvas = document.getElementById("weather-box-canvas");
-      var img = canvas.toDataURL("image/png");
-      document.write('<img src="' + img + '"/>');
+      // Get HTML to print from element
+      const prtHtml = document.getElementById("try-box").value;
+      const archive = {
+        content: prtHtml,
+        fontSize: fontSize.value,
+        wght: humidity.value,
+        ital: wind.value,
+        opsz: temp.value
+      }
+      let archiveCount = localStorage.getItem('archiveCount')
+      if(archiveCount) {
+        archiveCount = (parseInt(archiveCount)+1).toString()
+      } else {
+        archiveCount = '1'
+      }
+      localStorage.setItem('archiveCount', archiveCount)
+      localStorage.setItem('archive'+archiveCount, JSON.stringify(archive))
+      // console.log(JSON.parse(localStorage.getItem('archive'+archiveCount)))
+      // Get all stylesheets HTML
+      //       let stylesHtml = "";
+      //       for (const node of [
+      //         ...document.querySelectorAll('link[rel="stylesheet"], style'),
+      //       ]) {
+      //         stylesHtml += node.outerHTML;
+      //       }
+      //       // Open the print window
+      //       const WinPrint = window.open(
+      //         "",
+      //         "",
+      //         "left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0"
+      //       );
+      //       WinPrint.document.write(`<!DOCTYPE html>
+      // <html>
+      //   <head>
+      //     ${stylesHtml}
+      //   </head>
+      //   <body>
+      //   <p style="padding: 1rem 1.25rem; color: rgb(0, 0, 255); font-size: ${fontSize.value}px; font-family: 'Weather'; font-variation-settings: 'wght' ${humidity.value}, 'ital' ${wind.value}, 'opsz' ${temp.value};">
+      //     ${prtHtml}
+      //     </p>
+      //   </body>
+      // </html>`);
+      //       WinPrint.document.close();
+      //         WinPrint.focus();
+      // WinPrint.print();
     }
 
     getWeather();

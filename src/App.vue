@@ -28,7 +28,7 @@
 
 @font-face {
   font-family: "Weather";
-  src: url("~@/assets/fonts/WeatherDoubleUnicodeGX.ttf")
+  src: url("~@/assets/fonts/WeatherDoubleUnicodeVF.ttf")
     format("truetype-variations");
 }
 
