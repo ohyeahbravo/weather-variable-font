@@ -1,6 +1,24 @@
 <template>
   <div class="flex flex-col sm:flex-row w-full h-height">
     <div
+      id="alignment-setting"
+      class="sm:hidden w-full sm:w-76 flex flex-row items-center justify-center space-x-2"
+    >
+      <div class="flex flex-row pt-2 items-center">
+        <span class="inline" style="fontsize: 12pt">T</span>
+        <span class="inline" style="fontsize: 8pt">T</span>
+      </div>
+      <Slider
+        field="fontSize"
+        variable="fontSize"
+        :min="9"
+        :max="100"
+        :defaultValue="defaultFontSize"
+        @valueChanged="fontSizeChanged"
+      />
+      <span class="w-5">{{ fontSize }}</span>
+    </div>
+    <div
       class="w-full h-full py-5 sm:py-16 px-5 sm:pl-24 flex flex-col items-start space-y-10"
     >
       <h1 id="try-header">HOW DO YOU FEEL TODAY</h1>
@@ -61,7 +79,7 @@
         </div>
         <div
           id="alignment-setting"
-          class="w-full sm:w-76 flex flex-row items-center justify-center space-x-2"
+          class="hidden sm:block w-full sm:w-76 flex flex-row items-center justify-center space-x-2"
         >
           <div class="flex flex-row pt-2 items-center">
             <span class="inline" style="fontsize: 12pt">T</span>

@@ -54,7 +54,7 @@ export default {
 .slider#humidity {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    @apply appearance-none w-5 h-5 cursor-pointer z-20;
+    @apply appearance-none w-5 h-5 cursor-pointer z-20 border-none;
     background: url("~@/assets/icons/humidity_new.svg") no-repeat center;
   }
   &::-moz-range-thumb {
@@ -66,7 +66,7 @@ export default {
 .slider#temperature {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    @apply appearance-none w-5 h-5 cursor-pointer z-20;
+    @apply appearance-none w-5 h-5 cursor-pointer z-20 border-none;
     background: url("~@/assets/icons/temperature_new.svg") no-repeat center;
   }
   &::-moz-range-thumb {
@@ -78,7 +78,7 @@ export default {
 .slider#wind {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    @apply appearance-none w-5 h-5 cursor-pointer z-20 border-2;
+    @apply appearance-none w-5 h-5 cursor-pointer z-20 border-none;
     background: url("~@/assets/icons/wind_new.svg") no-repeat center;
   }
   &::-moz-range-thumb {
