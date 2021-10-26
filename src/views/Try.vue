@@ -79,7 +79,7 @@
         </div>
         <div
           id="alignment-setting"
-          class="hidden sm:block w-full sm:w-76 flex flex-row items-center justify-center space-x-2"
+          class="hidden sm:inline-flex w-full sm:w-76 flex flex-row items-center justify-center space-x-2"
         >
           <div class="flex flex-row pt-2 items-center">
             <span class="inline" style="fontsize: 12pt">T</span>
@@ -93,7 +93,7 @@
             :defaultValue="defaultFontSize"
             @valueChanged="fontSizeChanged"
           />
-          <span class="w-5">{{ fontSize }}</span>
+          <span class="w-5 pt-1">{{ fontSize }}</span>
         </div>
       </div>
       <button
