@@ -1,11 +1,13 @@
 <template>
-  <div class="flex flex-row w-full h-height">
-    <div class="w-full h-full py-16 pl-24 flex flex-col items-start space-y-10">
+  <div class="flex flex-col sm:flex-row w-full h-height">
+    <div
+      class="w-full h-full py-5 sm:py-16 px-5 sm:pl-24 flex flex-col items-start space-y-10"
+    >
       <h1 id="try-header">HOW DO YOU FEEL TODAY</h1>
       <textarea id="try-box"></textarea>
     </div>
     <div
-      class="flex flex-col h-full w-96 mx-20 py-16 justify-between items-center"
+      class="flex flex-col h-full w-full mt-10 sm:w-96 sm:mx-20 sm:py-16 justify-between items-center"
     >
       <button
         @click.prevent="getWeather"
@@ -59,7 +61,7 @@
         </div>
         <div
           id="alignment-setting"
-          class="w-76 flex flex-row items-center justify-center space-x-2"
+          class="w-full sm:w-76 flex flex-row items-center justify-center space-x-2"
         >
           <div class="flex flex-row pt-2 items-center">
             <span class="inline" style="fontsize: 12pt">T</span>
@@ -78,7 +80,7 @@
       </div>
       <button
         @click.prevent="archive"
-        class="focus:outline-none"
+        class="focus:outline-none my-5"
         id="print-button"
       >
         ARCHIVE IT
@@ -154,7 +156,7 @@ export default {
               humidity.value = data.main.humidity;
               temp.value = Math.round(parseFloat(data.main.temp) - 273.15);
               wind.value = data.wind.speed;
-              document.querySelector("#try-box").style.fontVariationSettingX =
+              document.querySelector("#try-box").style.fontVariationSettings =
                 '"wght" ' +
                 humidity.value +
                 ', "opsz" ' +
@@ -181,16 +183,16 @@ export default {
         fontSize: fontSize.value,
         wght: humidity.value,
         ital: wind.value,
-        opsz: temp.value
-      }
-      let archiveCount = localStorage.getItem('archiveCount')
-      if(archiveCount) {
-        archiveCount = (parseInt(archiveCount)+1).toString()
+        opsz: temp.value,
+      };
+      let archiveCount = localStorage.getItem("archiveCount");
+      if (archiveCount) {
+        archiveCount = (parseInt(archiveCount) + 1).toString();
       } else {
-        archiveCount = '1'
+        archiveCount = "1";
       }
-      localStorage.setItem('archiveCount', archiveCount)
-      localStorage.setItem('archive'+archiveCount, JSON.stringify(archive))
+      localStorage.setItem("archiveCount", archiveCount);
+      localStorage.setItem("archive" + archiveCount, JSON.stringify(archive));
       // console.log(JSON.parse(localStorage.getItem('archive'+archiveCount)))
       // Get all stylesheets HTML
       //       let stylesHtml = "";

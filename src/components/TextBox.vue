@@ -1,6 +1,8 @@
 <template>
   <div id="text-container" class="w-full">
-    <h1 class="w-full text-default-blue bg-transparent text-7xl text-center">
+    <h1
+      class="w-full text-default-blue bg-transparent text-5xl sm:text-7xl text-center"
+    >
       {{ text }}
     </h1>
   </div>

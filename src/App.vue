@@ -1,15 +1,19 @@
 <template>
-  <div
-    id="nav"
-    class="fixed top-0 left-0 flex-shrink-0 h-screen w-64 border-r border-default-blue flex flex-col items-center space-y-10"
-  >
-    <router-link class="mt-36" to="/">HOME</router-link>
-    <router-link to="/try">TRY IT</router-link>
-    <router-link to="/archive">ARCHIVE</router-link>
-  </div>
-  <div class="flex flex-row h-auto">
-    <div class="flex-shrink-0 h-screen w-64 bg-transparent"></div>
-    <router-view />
+  <div class="overflow-hidden h-screen flex flex-col sm:flex-row">
+    <div
+      id="nav"
+      class="sticky z-50 top-0 left-0 flex-shrink-0 h-12 w-screen border-b flex-row space-x-3 sm:h-screen sm:w-64 sm:border-r border-default-blue flex sm:flex-col items-center justify-center sm:space-y-10"
+    >
+      <router-link to="/">HOME</router-link>
+      <router-link to="/try">TRY IT</router-link>
+      <router-link to="/archive">ARCHIVE</router-link>
+    </div>
+    <div class="flex flex-col sm:flex-row flex-grow overflow-auto">
+      <div
+        class="sticky sm:hidden z-40 top-0 left-0 flex-shrink-0 h-12 w-screen bg-white"
+      ></div>
+      <router-view class="flex-grow" />
+    </div>
   </div>
 </template>
 

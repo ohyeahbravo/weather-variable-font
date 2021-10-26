@@ -1,5 +1,5 @@
 <template>
-  <div id="archive" class="w-full">
+  <div id="archive" class="w-screen">
     <div class="w-full flex align-start justify-start flex-wrap p-5">
       <div
         v-for="(datum, idx) in data"
@@ -102,18 +102,5 @@ export default {
 <style lang="scss" scoped>
 li {
   @apply list-none;
-}
-#archive-old {
-  /* Prevent vertical gaps */
-  line-height: 0;
-  margin-top: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-  -webkit-column-count: 3;
-  -webkit-column-gap: 5px;
-  -moz-column-count: 3;
-  -moz-column-gap: 5px;
-  column-count: 3;
-  column-gap: 5px;
 }
 </style>
