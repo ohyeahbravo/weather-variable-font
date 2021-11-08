@@ -17,11 +17,11 @@
           :style="{
             fontSize: datum.fontSize + 'px',
             fontVariationSettings:
-              'wght ' +
+              `'wght' ` +
               datum.wght +
-              ', ital ' +
+              `, 'ital' ` +
               datum.ital +
-              ', opsz ' +
+              `, 'opsz' ` +
               datum.opsz,
             fontFamily: 'Weather',
             padding: '1rem 1.25rem',
@@ -45,6 +45,7 @@ export default {
       for (let i = 1; i <= parseInt(archiveCount); i++) {
         data.value.push(JSON.parse(localStorage.getItem("archive" + i)));
       }
+      console.log(data.value);
     }
     const photos = ref([]);
     let currentFullScreenImageIndex = ref(1);
