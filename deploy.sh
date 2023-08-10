@@ -10,7 +10,7 @@ npm run build
 cd dist
 
 # if you are deploying to a custom domain
-echo 'www.weatherdiary.de' > CNAME
+# echo 'www.weatherdiary.de' > CNAME
 
 git init
 git add -A
